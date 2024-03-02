@@ -1,0 +1,214 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    color: #e2ece6;
+    background: #081b29;
+}
+.header,.rr{
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    padding: 20px 10px;
+    background: #4b2142;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    
+}
+.footer{
+   height: 10px;
+   width: 100%;
+   bottom: 0%;
+
+}
+.footer h3#{
+   color: #edecee;
+   left: 45%;
+}
+.footer p{
+   position: absolute;
+   color: white;
+   transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.logo{
+    position: relative;
+    font-size: 25px;
+    color: #4e0fe0;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: default;
+    animation: slide Right is ease forwards;
+    position: relative;
+    opacity: 5px;
+    margin-left: 65px;
+    transition: all .7s;
+}
+.logo:hover{
+    color: whitesmoke;
+    transform: matrix();
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+    box-shadow: 0 0 5px cyan;
+    cursor: pointer;
+    transform: scale(1.09);
+ }
+ .rr{
+    width: 70px;
+    height: 79px;
+    float: left;
+    border-radius: 50%;
+    border: 3px solid #0abb4e;
+    border-color: aqua;
+    transition: all .5s;
+    padding: 7px;
+    margin-left: 0px;
+    transition: all .7s;
+    cursor: pointer;
+    
+ }
+ .rr:hover{
+    
+    transform: scale(1.09);
+}
+.navbar a {
+    display: inline-block;
+    font-size: 20px;
+    color: #0abb4e;
+    font-weight: 500;
+    margin-right: 35px;
+    transition: .3s;
+    text-decoration: none;
+    padding-block: 8px;
+    transition: all .7s;
+    animation: slide Right is ease forwards;
+
+   
+}
+.navbar a:hover{
+    color: rgb(81, 8, 216);
+    transform: scale(1.09);
+}
+.HOME{ 
+    position: relative;
+    width: 100%;
+    justify-content: space-between;
+    height: 100vh;
+    background: url(userkkt.jpg.jpg) no-repeat ;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    padding: 70px 10%;
+}
+ .HOME-conten{
+    max-width: 600px;
+ }
+ .HOME-conten h3{
+    font-size: 32px;
+    font-weight: 700px;
+    
+    
+ }
+ .HOME-content h1 span{
+   color: #881b29;
+   text-transform: uppercase;
+ }
+ .HOME-conten h3:nth-of-type(2){
+    margin-bottom: 30px;
+ }
+ .text{
+   color: burlywood;
+ }
+ .HOME-conten h1{
+    font-size: 56px;
+    font-weight: 700;
+    margin: -3px;
+ }
+ .HOME-conten p{
+    font-size: 20px;
+ }
+ .HOME-sci a{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #0ef;
+    text-decoration: none;
+    margin: 30px 15px 30px 0;
+
+ }
+ .HOME-sci a:hover{
+    background: #0ef;
+    color: #881b29;
+    box-shadow: 0 0 20px #0ef;
+
+ }
+ .btn-box{
+    display: inline-block;
+    padding: 12px 28px;
+    background: #0ef;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #881b29;
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-weight: 600;
+ }
+ .btn-box:hover{
+    box-shadow: 0 0 5px cyan;
+    0 0 25px cyan,0 0 50px cyan;
+    
+ }
+  .about{
+   display:grid;
+   grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 1.Srem;
+  }
+  ,.about-img img{
+   padding-bottom: 20%;
+   max-width: 600px;
+   height: auto;
+   width: 100%;
+   border-radius: 8px;
+  }
+  .about-text h2{
+   font-size: 60px;
+  }
+  .about-text h2 span{
+   color: #0ef;
+  }
+  .about-text h1{
+   font-size: 28px;
+   font-weight: 600;
+   color: #fff;
+   line-height: 1.5;
+   margin: 20px 0 30px;
+  }
+  .about-text p{
+   color: aliceblue;
+   font-size: 20px;
+   line-height: 1.2;
+   margin-bottom: 5r4m;
+  }
+  @media screen and (max-width:600px){
+   .header a {
+      float: none;
+      display: block;
+      text-align: left;
+
+   }
+   .navbar{
+      float: none;
+   }
+  }
