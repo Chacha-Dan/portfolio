@@ -1,0 +1,101 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.auth-container, .app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    transition: all 0.5s ease;
+}
+
+.auth-form {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.auth-form input, .auth-form select, .auth-form button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-form input:focus, .auth-form select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.auth-form button {
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background: #0056b3;
+}
+
+.auth-form p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-form p a:hover {
+    text-decoration: underline;
+}
+
+.app-container {
+    padding: 20px;
+    display: none;
+}
+
+.app-container h1 {
+    font-size: 2em;
+    color: #333;
+}
+
+#taskForm input, #taskForm textarea {
+    margin: 10px 0;
+    padding: 12px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#task-list .task-item {
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+#task-list .task-item .delete-task {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#task-list .task-item .delete-task:hover {
+    background: #c82333;
+}
