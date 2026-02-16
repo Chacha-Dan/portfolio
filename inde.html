@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART Task Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+    <action="connect.php" method="Post"></action>
+    <style>
+            body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+.auth-container, .app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.auth-form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    width: 300px;
+}
+
+.auth-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+    align-items: center;
+    
+}
+
+.auth-form input, .auth-form select, .auth-form button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.auth-form button {
+    background: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.auth-form button:hover {
+    background: #0056b3;
+}
+.in {
+    display: inline;
+}
+
+.hidden {
+    display: none;
+}
+.display { 
+    display: inline;
+}
+
+.auth-form p {
+    margin-top: 10px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.auth-form p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.auth-form p a:hover {
+    text-decoration: underline;
+}
+
+.app-container {
+    padding: 20px;
+}
+
+#admin-panel, #employee-panel {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    width: 100%;
+    max-width: 600px;
+}
+
+#admin-panel h2, #employee-panel h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#taskForm, #uploadWorkForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#taskForm input, #taskForm textarea, #uploadWorkForm input, #uploadWorkForm textarea, #taskForm button, #uploadWorkForm button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+}
+
+#taskForm button, #uploadWorkForm button {
+    background: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+#taskForm button:hover, #uploadWorkForm button:hover {
+    background: #218838;
+}
+
+#task-list, #view-tasks {
+    margin-top: 20px;
+}
+
+.task-item {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.urgent {
+    border-left: 5px solid red;
+}
+
+.task-item h4 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.task-item p {
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.delete-task {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    float: right;
+}
+
+.delete-task:hover {
+    background: #c82333;
+}
+
+#menu {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+    color: #333;
+    z-index: 100;
+    display: none; /* Initially hidden */
+}
+
+#dropdown-menu {
+    position: absolute;
+    top: 50px;
+    left: 10px;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    display: none;
+    z-index: 100;
+}
+
+#dropdown-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#dropdown-menu ul li {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+}
+
+#dropdown-menu ul li:last-child {
+    border-bottom: none;
+}
+
+#dropdown-menu ul li:hover {
+    background: #f4f4f9;
+}
+    </style>
+</head>
+<body>
+    <!-- Menu Icon -->
+    <div id="menu">☰</div>
+
+    <!-- Dropdown Menu -->
+    <div id="dropdown-menu">
+        <ul>
+            <li id="menu-instructions">Instructions</li>
+            <li id="menu-security">Security & Privacy</li>
+            <li id="menu-resources">Resources</li>
+            <li id="menu-members">Members</li>
+            <li id="menu-admins">Admins</li>
+        </ul>
+    </div>
+
+    <!-- Sign In/Sign Up Page -->
+    <div id="auth-section" class="auth-container">
+        <div id="sign-up" class="auth-form">
+            <h2>Sign Up</h2>
+            <form id="signUpForm">
+                <input type="text" id="signup-username" placeholder="Username" required>
+                <input type="password" id="signup-password" placeholder="Password" required>
+                <input type="email" id="signup-email" placeholder="Email" required>
+                <div>
+                    <select id="signup-country-code" style="width: 30%; display: inline-block;">
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+91">+91 (India)</option>
+                        <option value="+61">+61 (Australia)</option>
+                        <option value="+81">+81 (Japan)</option>
+                        <option value="+234">+234 (Nigeria)</option>
+                        <option value="+254">+254 (Kenya)</option>
+                        <option value="+27">+27 (South Africa)</option>
+                        <option value="+212">+212 (Morocco)</option>
+                        <option value="+20">+20 (Egypt)</option>
+                        <option value="+233">+233 (Ghana)</option>
+                        <option value="+255">+255 (Tanzania)</option>
+                    </select>
+                    <input type="tel" id="signup-phone" placeholder="Phone Number" required style="width: 68%; display: inline-block;">
+                </div>
+                <select id="signup-role">
+                    <option value="employee">Employee</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button type="submit">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="#" id="switch-to-signin">Sign In</a></p>
+        </div>
+
+        <div id="sign-in" class="auth-form hidden">
+            <h2>Sign In</h2>
+            <form id="signInForm">
+                <input type="text" id="signin-username" placeholder="Username" required>
+                <input type="password" id="signin-password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+            <p><a href="#" id="forgot-password">Forgotten Password?</a></p>
+        </div>
+
+        <div id="reset-password" class="auth-form hidden">
+            <h2>Reset Password</h2>
+            <form id="resetPasswordForm">
+                <input type="email" id="reset-email" placeholder="Enter your email" required>
+                <button type="submit">Reset Password</button>
+            </form>
+            <p><a href="#" id="back-to-signin">Back to Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Application Interface -->
+    <div id="app-section" class="app-container hidden">
+        <h1>SMART Task Management</h1>
+        <div id="admin-panel" class="display">
+            <h2>Admin Panel</h2>
+            <form id="taskForm">
+                <input type="text" id="task-title" placeholder="Task Title" required>
+                <textarea id="task-description" placeholder="Task Description" required></textarea>
+                <label>
+                    <input type="checkbox" id="urgent-task"> Mark as Urgent
+                </label>
+                <button type="submit">Post Task</button>
+            </form>
+            <div id="task-list"></div>
+        </div>
+
+        <div id="employee-panel" class="display">
+            <h2>Employee Panel</h2>
+            <div id="view-tasks"></div>
+            <form id="uploadWorkForm">
+                <input type="text" id="work-title" placeholder="Work Title" required>
+                <textarea id="work-description" placeholder="Description of Work" required></textarea>
+                <button type="submit">Upload Work</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const signUpForm = document.getElementById('signUpForm');
+        const signInForm = document.getElementById('signInForm');
+        const resetPasswordForm = document.getElementById('resetPasswordForm');
+        const switchToSignIn = document.getElementById('switch-to-signin');
+        const forgotPassword = document.getElementById('forgot-password');
+        const backToSignIn = document.getElementById('back-to-signin');
+        const menu = document.getElementById('menu');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const authSection = document.getElementById('auth-section');
+        const appSection = document.getElementById('app-section');
+
+        signUpForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authSection.classList.add('hidden');
+            appSection.classList.remove('hidden');
+            menu.style.display = 'block';
+        });
+
+        signInForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            authSection.classList.add('hidden');
+            appSection.classList.remove('hidden');
+            menu.style.display = 'block';
+        });
+
+        menu.addEventListener('click', () => {
+            dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+        });
+
+        switchToSignIn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('sign-up').classList.add('hidden');
+            document.getElementById('sign-in').classList.remove('hidden');
+        });
+
+        forgotPassword.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('sign-in').classList.add('hidden');
+            document.getElementById('reset-password').classList.remove('hidden');
+        });
+
+        backToSignIn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('reset-password').classList.add('hidden');
+            document.getElementById('sign-in').classList.remove('hidden');
+        });
+
+        resetPasswordForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Password reset link sent to your email!');
+            document.getElementById('reset-password').classList.add('hidden');
+            document.getElementById('sign-in').classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
